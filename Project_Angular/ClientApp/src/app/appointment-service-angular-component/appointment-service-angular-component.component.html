@@ -1,0 +1,105 @@
+<style>
+  .form-group label {
+    justify-content: left !important;
+  }
+</style>
+
+<div class="row justify-content-center align-Appointment-center ml-2">
+
+
+  <form>
+
+    <h1>
+      Appointment CRUD in Angular6!
+    </h1>
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Appointment Table</h2>
+        <div class="form-group">
+          <label for="Appointment_ID">Appointment ID</label>
+          <input id="Appointment_ID" name="Appointment_ID" #Appointment_ID [value]=Appointment_ID2 class="form-control" (input)="Appointmentchange()" [(ngModel)]=Appointment_ID2 />
+        </div>
+
+        <div class="form-group">
+          <label for="Appointment_Name">Appointment Name</label>
+          <input id="Appointment_Name" name="Appointment_Name" #Appointment_Name [value]=Appointment_Name2 class="form-control" [(ngModel)]=Appointment_Name2 />
+        </div>
+
+        <div class="form-group">
+          <label for="Date">Date</label>
+          <input id="Date" name="Date" #Date [value]=Date2 class="form-control" [(ngModel)]=Date2 />
+        </div>
+        <div class="form-group form-inline">
+          <label class="col-md-4 text-left" for="Phone">Phone:</label>
+          <input name="Phone" id="Phone" #Phone [value]=Phone2 class="form-control col-md-8" [(ngModel)]=Phone2 />
+        </div>
+
+      </div>
+      <div class="col-md-8">
+
+        <div class="form-group form-inline">
+          <label class="col-md-4 text-left" for="Service_ID">Service ID:</label>
+          <input name="Service_ID" id="Service_ID" #Service_ID [value]=Service_ID2 class="form-control col-md-8" [(ngModel)]=Service_ID2 />
+        </div>
+
+        <div class="form-group form-inline">
+          <label class="col-md-4 text-left" for="Service_Name">Service Name:</label>
+          <input name="Service_Name" id="Service_Name" #Service_Name [value]=Service_Name2 class="form-control col-md-8" [(ngModel)]=Service_Name2 />
+        </div>
+
+        <div class="form-group form-inline">
+          <label class="col-md-4 text-left" for="Service_Fee">Service Fee:</label>
+          <input name="Service_Fee" id="Service_Fee" #Service_Fee [value]=Service_Fee2 class="form-control col-md-8" [(ngModel)]=Service_Fee2 />
+        </div>
+
+        <div class="form-group form-inline">
+          <label class="image-upload-container btn btn-bwm col-md-4 text-left">
+            <span>Select Image</span>
+          </label>
+          <input type="file" name="Picture" id="Picture" (change)="onFileChanged($event)" class="form-control col-md-8" />
+          <br />
+        </div>
+
+
+        <button type="button" (click)="addItems( Appointment_Name.value,Service_ID.value,Service_Name.value,Appointment_ID.value,Service_Fee.value,Date.value,Phone.value,'')" class="btn-primary btn mr-3">Add</button>
+        <button type="button" (click)="upDateService(Appointment_Name,Service_ID,Service_Name,Appointment_ID,Service_Fee,Date,Phone)" class="btn btn-info mr-3">Update</button>
+        <button type="button" (click)="deleteItems()" class="btn btn-success mr-3">Delete</button>
+      </div>
+    </div>
+
+  </form>
+
+
+
+</div>
+
+
+<div class="row">
+  <table class="table table-condensed">
+    <tr>
+      <th>Sl No</th>
+      <th>Service ID</th>
+      <th>Service Name</th>
+      <th>Service Fee</th>
+      <th>Picture</th>
+
+    </tr>
+    <tr *ngFor="let item of items let i=index" (click)="show(item.Appointment_Name,item.Service_ID,item.Service_Name, item.Appointment_ID,item.Service_Fee,item.Date,item.Phone,item.Picture)">
+      <td>
+        {{i+1}}
+      </td>
+
+      <td> {{item.Service_ID}}</td>
+      <td> {{item.Service_Name}}</td>
+      <td> {{item.Service_Fee}}</td>
+
+      <td><img width="100" src="https://localhost:7179/uploads/{{item.Picture}}" /></td>
+
+    </tr>
+  </table>
+  <hr />
+  Data: {{data2}}
+  <hr />
+  <button type="button" (click)="saveAll()" class="btn-primary btn mr-3">Save</button>
+  <button type="button" (click)="deleteAll()" class="btn btn-success mr-3">Drop</button>
+</div>

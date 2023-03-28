@@ -1,0 +1,11 @@
+<p>Appointment-component works!</p>
+<div class="card">
+  <div class="card-header">
+    Appointment and Total Service:
+  </div>
+
+  <div *ngFor="let item of items let i=index" class="card-body">
+    <a href="https://localhost:4200?Appointment_ID={{item.Appointment_ID}}">{{item.Appointment_ID}} ({{item.Appointment_Name}}) </a>
+  </div>
+</div>
+
